@@ -1,0 +1,203 @@
+:root {
+    /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
+    --primary-color: #008b8b;
+    --secondary-color: #ffffff;
+    --tertiary-color: #4682b4;
+    --background-color: #404245;
+    --box-color: 	#000000;
+    --error-color: #EE3A23;
+    --button-color: #08a1a1;
+}
+
+.background {
+    background-color: var(--background-color);
+    margin: 0;
+    counter-reset: section;
+    font-family: "Helvetica Neue",Helvetica,sans-serif;
+}
+
+.header {
+    /* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+    text-align: center;
+    display: flex;
+    flex-direction:;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 4px 20px;
+    justify-content: center;
+}
+
+.button {
+  background-color: var(--tertiary-color);
+  border: none;
+  color: var(--secondary-color);
+  padding: 6px 8px 4px 8px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.header_home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    line-height: 36px;
+    height: 100px;
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-family: "Impact", fantasy;
+}
+
+.card {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    margin: 20px;
+    padding: 10px 20px;
+}
+
+.error {
+    color: var(--error-color);
+    border: 1px solid var(--box-color);
+    padding: 8px;
+}
+
+.validated-field:invalid {
+    outline: 2px solid var(--error-color);
+}
+.validated-field:focus:invalid {
+    color: var(--error-color);
+}
+
+.card-content {
+    max-width: 500px;
+}
+
+.logo-container img {
+  width: 100px;
+  height: 100px;
+  font-family: "Impact", fantasy;
+}
+
+.gif-image {
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 90%;
+}
+
+.site-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  background-color: transparent;
+}
+
+.user {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+}
+
+.card-content .form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.tags {
+    display: flex;
+    flex-direction: row;
+}
+
+.tag {
+    font-size: 12px;
+    margin: 0 10px;
+    padding: 4px 8px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    position: relative;
+    border-radius: 16px;
+}
+
+.song {
+    padding: 2px;
+    display: flex;
+}
+
+.song .title {
+    flex: 20%;
+}
+
+.song .album {
+    flex: 80%;
+}
+
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #08a1a1;
+  text-align: center;
+  padding: 10px 15px 9px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: bold;
+
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: #08a1a1;
+}
+
+/*
+Flexbox on a lists removes the numbers. We use a counter here to add them back.
+https://stackoverflow.com/a/34316093
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters
+*/
+.song:before {
+    counter-increment: section;
+    content: counter(section) ".";
+    position: absolute;
+    margin-left: -40px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* table styles */ 
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+th {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+a {
+    color: var(--tertiary-color);
+    text-decoration: none;
+}
