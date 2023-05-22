@@ -1,16 +1,13 @@
 :root {
     /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
-    --primary-color: #008b8b;
+    --primary-color: #5D5E5E;
     --secondary-color: #ffffff;
-    --tertiary-color: #4682b4;
-    --background-color: #404245;
-    --box-color: 	#000000;
+    --tertiary-color: #F5881F;
     --error-color: #EE3A23;
-    --button-color: #08a1a1;
 }
 
 .background {
-    background-color: var(--background-color);
+    background-color: #8A8C8F;
     margin: 0;
     counter-reset: section;
     font-family: "Helvetica Neue",Helvetica,sans-serif;
@@ -18,14 +15,12 @@
 
 .header {
     /* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
-    text-align: center;
     display: flex;
-    flex-direction:;
     justify-content: space-between;
+    align-items: center;
     background-color: var(--primary-color);
     color: var(--secondary-color);
     padding: 4px 20px;
-    justify-content: center;
 }
 
 .button {
@@ -42,19 +37,14 @@
 .button-group {
     display: flex;
     justify-content: space-between;
-
 }
 
 .header_home {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 35px;
-    line-height: 36px;
+    font-size: 36px;
+    line-height: 40px;
     height: 100px;
     text-decoration: none;
     color: var(--secondary-color);
-    font-family: "Impact", fantasy;
 }
 
 .card {
@@ -66,7 +56,7 @@
 
 .error {
     color: var(--error-color);
-    border: 1px solid var(--box-color);
+    border: 1px solid var(--error-color);
     padding: 8px;
 }
 
@@ -79,33 +69,6 @@
 
 .card-content {
     max-width: 500px;
-}
-
-.logo-container img {
-  width: 100px;
-  height: 100px;
-  font-family: "Impact", fantasy;
-}
-
-.gif-image {
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 90%;
-}
-
-.site-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80px;
-  background-color: transparent;
-}
-
-.user {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 20px;
 }
 
 .card-content .form-field {
@@ -139,35 +102,6 @@
 
 .song .album {
     flex: 80%;
-}
-
-.topnav {
-  background-color: #333;
-  overflow: hidden;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  color: #08a1a1;
-  text-align: center;
-  padding: 10px 15px 9px;
-  text-decoration: none;
-  font-size: 17px;
-  font-weight: bold;
-
-}
-
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-/* Add a color to the active/current link */
-.topnav a.active {
-  background-color: #04AA6D;
-  color: #08a1a1;
 }
 
 /*
