@@ -1,0 +1,34 @@
+{
+  "prescriptions": [
+    {
+      "PutRequest": {
+        "Item": {
+          "prescriptionId": { "S": "123" },
+          "email": { "S": "aoeuaoeu@aoeu.aoeu" },
+          "drug": { "S": "Advil" },
+          "dose": { "S": "200mg" },
+          "sigCode": { "S": "BID" },
+          "lastFillDate": { "S": "2023-1-18T07:56:05" },
+          "expirationDate": { "S": "2023-4-18T07:56:05" },
+          "refills": { "N": "4" },
+          "status": { "S": "PENDING" },
+          "notes": { "S": "Cats are really cool. You should get one. They are the absolute best." }
+        }
+      }
+    }
+  ],
+  "patients": [
+    {
+      "PutRequest": {
+        "Item": {
+          "email": { "S": "aoeuaoeu@aoeu.aoeu" },
+          "firstName": { "S": "Kaden" },
+          "lastName": { "S": "Cannon" },
+          "insurance": { "S": "CatsRCool" },
+          "phone": { "S": "123-456-7890" },
+          "address": { "S": "123 YoMama Ln" }
+        }
+      }
+    }
+  ]
+}
