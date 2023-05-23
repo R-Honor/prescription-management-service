@@ -1,14 +1,14 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Music Playlist Service
+  Prescription Management Service
 
 Parameters:
 
   CognitoDomain:
     Type: String
     Description: A name for the cognito Domain
-    Default: "change-this-music-playlist-service-change-this"
+    Default: "prescription-management-service-kadencannon"
 
   S3Bucket:
     Type: String
@@ -201,183 +201,81 @@ Resources:
                   - logs:PutLogEvents
                   - cloudwatch:PutMetricData
                 Resource: '*'
-        - PolicyName: 'AccessPlaylistsTable'
+        - PolicyName: 'AccessPrescriptionsTable'
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
               - Effect: Allow
                 Action: dynamodb:*
-                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/playlists"
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/prescriptions"
 
-        - PolicyName: 'AccessAlbumTracksTable'
+        - PolicyName: 'AccessPatients'
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
               - Effect: Allow
                 Action: dynamodb:*
-                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/album_tracks"
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/patients"
 
   #-----------------------------------------------------
   # Lambda Functions Configuration
   #-----------------------------------------------------
 
-#  GetPlaylistLambda:
-#    Type: AWS::Serverless::Function
-#    Properties:
-#      Role: !GetAtt AccessRole.Arn
-#      CodeUri: MusicPlaylistServiceLambda
-#      Handler: com.nashss.se.musicplaylistservice.lambda.GetPlaylistLambda::handleRequest
-#      Runtime: java11
-#      Architectures:
-#        - x86_64
-#      MemorySize: 512
-#      Environment:
-#        Variables:
-#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-#      Events:
-#        MusicPlaylistService:
-#          Type: Api
-#          Properties:
-#            Path: /playlists/{id}
-#            Method: get
-#            Auth:
-#              Authorizer: 'NONE'
-#
-#  SearchPlaylistsLambda:
-#    Type: AWS::Serverless::Function
-#    Properties:
-#      Role: !GetAtt AccessRole.Arn
-#      CodeUri: MusicPlaylistServiceLambda
-#      Handler: com.nashss.se.musicplaylistservice.lambda.SearchPlaylistsLambda::handleRequest
-#      Runtime: java11
-#      Architectures:
-#        - x86_64
-#      MemorySize: 512
-#      Environment:
-#        Variables:
-#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-#      Events:
-#        MusicPlaylistService:
-#          Type: Api
-#          Properties:
-#            Path: /playlists/search
-#            Method: get
-#            Auth:
-#              Authorizer: 'NONE'
-#
-#  GetPlaylistSongsLambda:
-#    Type: AWS::Serverless::Function
-#    Properties:
-#      Role: !GetAtt AccessRole.Arn
-#      CodeUri: MusicPlaylistServiceLambda
-#      Handler: com.nashss.se.musicplaylistservice.lambda.GetPlaylistSongsLambda::handleRequest
-#      Runtime: java11
-#      Architectures:
-#        - x86_64
-#      MemorySize: 512
-#      Environment:
-#        Variables:
-#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-#      Events:
-#        MusicPlaylistService:
-#          Type: Api
-#          Properties:
-#            Path: /playlists/{id}/songs
-#            Method: get
-#            Auth:
-#              Authorizer: 'NONE'
-#
-#  CreatePlaylistLambda:
-#    Type: AWS::Serverless::Function
-#    Properties:
-#      Role: !GetAtt AccessRole.Arn
-#      CodeUri: MusicPlaylistServiceLambda
-#      Handler: com.nashss.se.musicplaylistservice.lambda.CreatePlaylistLambda::handleRequest
-#      Runtime: java11
-#      Architectures:
-#        - x86_64
-#      MemorySize: 512
-#      Environment:
-#        Variables:
-#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-#      Events:
-#        MusicPlaylistService:
-#          Type: Api
-#          Properties:
-#            Path: /playlists
-#            Method: post
-#
-#  UpdatePlaylistLambda:
-#    Type: AWS::Serverless::Function
-#    Properties:
-#      Role: !GetAtt AccessRole.Arn
-#      CodeUri: MusicPlaylistServiceLambda
-#      Handler: com.nashss.se.musicplaylistservice.lambda.UpdatePlaylistLambda::handleRequest
-#      Runtime: java11
-#      Architectures:
-#        - x86_64
-#      MemorySize: 512
-#      Environment:
-#        Variables:
-#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-#      Events:
-#        MusicPlaylistService:
-#          Type: Api
-#          Properties:
-#            Path: /playlists/{id}
-#            Method: put
-#
-#  AddSongToPlaylistLambda:
-#    Type: AWS::Serverless::Function
-#    Properties:
-#      Role: !GetAtt AccessRole.Arn
-#      CodeUri: MusicPlaylistServiceLambda
-#      Handler: com.nashss.se.musicplaylistservice.lambda.AddSongToPlaylistLambda::handleRequest
-#      Runtime: java11
-#      Architectures:
-#        - x86_64
-#      MemorySize: 512
-#      Environment:
-#        Variables:
-#          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
-#      Events:
-#        MusicPlaylistService:
-#          Type: Api
-#          Properties:
-#            Path: /playlists/{id}/songs
-#            Method: post
+
 
   #-----------------------------------------------------
   # DynamoDB Configuration
   #-----------------------------------------------------
 
-  PlaylistsTable:
+  PrescriptionsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: "id"
+        - AttributeName: "prescriptionId"
+          AttributeType: "S"
+        - AttributeName: "email"
+          AttributeType: "S"
+        - AttributeName: "status"
           AttributeType: "S"
       KeySchema:
-        - AttributeName: "id"
+        - AttributeName: "prescriptionId"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "playlists"
+      TableName: "prescriptions"
+      GlobalSecondaryIndexes:
+        - IndexName: "EmailStatusIndex"
+          KeySchema:
+            - AttributeName: "email"
+              KeyType: "HASH"
+            - AttributeName: "status"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "KEYS_ONLY"
 
-  AlbumTracksTable:
+  PatientsTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: "asin"
+        - AttributeName: "email"
           AttributeType: "S"
-        - AttributeName: "track_number"
-          AttributeType: "N"
+        - AttributeName: "firstName"
+          AttributeType: "S"
+        - AttributeName: "lastName"
+          AttributeType: "S"
       KeySchema:
-        - AttributeName: "asin"
+        - AttributeName: "email"
           KeyType: "HASH"
-        - AttributeName: "track_number"
-          KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "album_tracks"
+      TableName: "patients"
+      GlobalSecondaryIndexes:
+        - IndexName: "FirstLastIndex"
+          KeySchema:
+            - AttributeName: "firstName"
+              KeyType: "HASH"
+            - AttributeName: "lastName"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "KEYS_ONLY"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed
@@ -396,9 +294,9 @@ Outputs:
     Value: !Sub "${CognitoDomain}.auth.us-east-2.amazoncognito.com"
     Description: "The Cognito Domain (COGNITO_DOMAIN)."
 
-  ApiBaseUrl:
-    Description: "API Gateway endpoint base URL for Prod stage (API_BASE_URL)."
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+#  ApiBaseUrl:
+#    Description: "API Gateway endpoint base URL for Prod stage (API_BASE_URL)."
+#    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
 
   CognitoRedirectSignin:
     Description: "The URL of the deployed front-end application (COGNITO_REDIRECT_SIGNIN)."
