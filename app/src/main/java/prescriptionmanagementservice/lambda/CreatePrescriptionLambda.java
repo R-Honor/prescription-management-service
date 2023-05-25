@@ -18,7 +18,7 @@ public class CreatePrescriptionLambda extends LambdaActivityRunner<CreatePrescri
         return super.runActivity(
                 () -> {
                     CreatePrescriptionRequest authenticatedRequest = input.fromBody(CreatePrescriptionRequest.class);
-                    System.out.println("In lambda building request");
+
                     return CreatePrescriptionRequest.builder()
                             .withPrescriptionId(authenticatedRequest.getPrescriptionId())
                             .withEmail(authenticatedRequest.getEmail())

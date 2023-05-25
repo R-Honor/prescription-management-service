@@ -21,6 +21,9 @@ public class CreatePrescriptionRequest {
 
     private PrescriptionStatusEnum status;
 
+    public CreatePrescriptionRequest() {
+
+    }
     public CreatePrescriptionRequest(String email, String drug, String dose, String sigCode, String notes, ZonedDateTime lastFillDate,ZonedDateTime expirationDate, Integer refills) {
         this.prescriptionId = String.valueOf(UUID.randomUUID());
         this.email = email;
