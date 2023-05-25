@@ -3,6 +3,7 @@ package prescriptionmanagementservice.activity.requests;
 import prescriptionmanagementservice.models.PrescriptionStatusEnum;
 
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 public class CreatePrescriptionRequest {
 
@@ -20,19 +21,22 @@ public class CreatePrescriptionRequest {
 
     private PrescriptionStatusEnum status;
 
-    public CreatePrescriptionRequest(String email, String drug, String dose, String sigCode, String notes, ZonedDateTime expirationDate, Integer refills) {
+    public CreatePrescriptionRequest(String email, String drug, String dose, String sigCode, String notes, ZonedDateTime lastFillDate,ZonedDateTime expirationDate, Integer refills) {
+        this.prescriptionId = String.valueOf(UUID.randomUUID());
         this.email = email;
         this.drug = drug;
         this.dose = dose;
         this.sigCode = sigCode;
         this.notes = notes;
+        this.lastFillDate = lastFillDate;
         this.expirationDate = expirationDate;
         this.refills = refills;
+        this.status = PrescriptionStatusEnum.PENDING;
     }
 
-//    public String getPrescriptionId() {
-//        return prescriptionId;
-//    }
+    public String getPrescriptionId() {
+        return prescriptionId;
+    }
 
     public String getEmail() {
         return email;
@@ -54,9 +58,9 @@ public class CreatePrescriptionRequest {
         return notes;
     }
 
-//    public ZonedDateTime getLastFillDate() {
-//        return lastFillDate;
-//    }
+    public ZonedDateTime getLastFillDate() {
+        return lastFillDate;
+    }
 
     public ZonedDateTime getExpirationDate() {
         return expirationDate;
@@ -66,9 +70,9 @@ public class CreatePrescriptionRequest {
         return refills;
     }
 
-//    public PrescriptionStatusEnum getStatus() {
-//        return status;
-//    }
+    public PrescriptionStatusEnum getStatus() {
+        return status;
+    }
 
     @Override
     public String toString() {
@@ -93,7 +97,7 @@ public class CreatePrescriptionRequest {
 
     public static class Builder {
 
-//        private String prescriptionId;
+        private String prescriptionId;
         private String email;
         private String drug;
         private String dose;
@@ -105,8 +109,12 @@ public class CreatePrescriptionRequest {
 
         private Integer refills;
 
-//        private PrescriptionStatusEnum status;
+        private PrescriptionStatusEnum status;
 
+        public Builder withPrescriptionId(String prescriptionId) {
+            this.prescriptionId = prescriptionId;
+            return this;
+        }
         public Builder withEmail(String email) {
             this.email = email;
             return this;
@@ -144,6 +152,11 @@ public class CreatePrescriptionRequest {
 
         public Builder withRefills(Integer refills) {
             this.refills = refills;
+            return this;
+        }
+
+        public Builder withStatus(PrescriptionStatusEnum status) {
+            this.status = status;
             return this;
         }
 
