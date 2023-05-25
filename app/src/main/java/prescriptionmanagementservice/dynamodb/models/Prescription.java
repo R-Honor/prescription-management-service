@@ -1,11 +1,13 @@
 package prescriptionmanagementservice.dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import prescriptionmanagementservice.converters.ZonedDateTimeConverter;
 import prescriptionmanagementservice.models.PrescriptionStatusEnum;
 
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
+@DynamoDBTable(tableName = "prescriptions")
 public class Prescription {
     private static final String EMAIL_STATUS_INDEX = "EmailStatusIndex";
 
@@ -68,6 +70,7 @@ public class Prescription {
         this.sigCode = sigCode;
     }
 
+    @DynamoDBTypeConverted(converter = ZonedDateTimeConverter.class)
     @DynamoDBAttribute(attributeName = "lastFillDate")
     public ZonedDateTime getLastFillDate() {
         return lastFillDate;
@@ -77,6 +80,7 @@ public class Prescription {
         this.lastFillDate = lastFillDate;
     }
 
+    @DynamoDBTypeConverted(converter = ZonedDateTimeConverter.class)
     @DynamoDBAttribute(attributeName = "expirationDate")
     public ZonedDateTime getExpirationDate() {
         return expirationDate;
