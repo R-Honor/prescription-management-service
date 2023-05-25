@@ -1,6 +1,7 @@
 package prescriptionmanagementservice.dependency;
 
 import dagger.Component;
+import prescriptionmanagementservice.activity.ViewPrescriptionActivity;
 
 import javax.inject.Singleton;
 
@@ -10,5 +11,7 @@ import javax.inject.Singleton;
 @Singleton
 @Component(modules = {DaoModule.class, MetricsModule.class})
 public interface ServiceComponent {
+
+    ViewPrescriptionActivity provideViewPrescriptionActivity();
 
 }
