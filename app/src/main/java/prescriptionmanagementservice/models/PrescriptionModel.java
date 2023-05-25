@@ -1,6 +1,6 @@
 package prescriptionmanagementservice.models;
 
-import java.time.ZonedDateTime;
+import java.lang.String;
 import java.util.Objects;
 
 public class PrescriptionModel {
@@ -12,14 +12,14 @@ public class PrescriptionModel {
     private String sigCode;
     private String notes;
 
-    private ZonedDateTime lastFillDate;
-    private ZonedDateTime expirationDate;
+    private String lastFillDate;
+    private String expirationDate;
 
     private Integer refills;
 
     private PrescriptionStatusEnum status;
 
-    public PrescriptionModel(String prescriptionId, String email, String drug, String dose, String sigCode, String notes, ZonedDateTime lastFillDate, ZonedDateTime expirationDate, Integer refills, PrescriptionStatusEnum status) {
+    public PrescriptionModel(String prescriptionId, String email, String drug, String dose, String sigCode, String notes, String lastFillDate, String expirationDate, Integer refills, PrescriptionStatusEnum status) {
         this.prescriptionId = prescriptionId;
         this.email = email;
         this.drug = drug;
@@ -56,11 +56,11 @@ public class PrescriptionModel {
         return notes;
     }
 
-    public ZonedDateTime getLastFillDate() {
+    public String getLastFillDate() {
         return lastFillDate;
     }
 
-    public ZonedDateTime getExpirationDate() {
+    public String getExpirationDate() {
         return expirationDate;
     }
 
@@ -110,8 +110,8 @@ public class PrescriptionModel {
         private String sigCode;
         private String notes;
 
-        private ZonedDateTime lastFillDate;
-        private ZonedDateTime expirationDate;
+        private String lastFillDate;
+        private String expirationDate;
 
         private Integer refills;
 
@@ -147,12 +147,12 @@ public class PrescriptionModel {
             return this;
         }
 
-        public Builder withLastFillDate(ZonedDateTime lastFillDate) {
+        public Builder withLastFillDate(String lastFillDate) {
             this.lastFillDate = lastFillDate;
             return this;
         }
 
-        public Builder withExpirationDate(ZonedDateTime expirationDate) {
+        public Builder withExpirationDate(String expirationDate) {
             this.expirationDate = expirationDate;
             return this;
         }
