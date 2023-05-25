@@ -24,4 +24,9 @@ public class PrescriptionDao {
         }
         return prescription;
     }
+
+    public Prescription createPrescription(Prescription prescription) {
+        this.mapper.save(prescription);
+        return prescription;
+    }
 }
