@@ -1,6 +1,7 @@
 package prescriptionmanagementservice.dependency;
 
 import dagger.Component;
+import prescriptionmanagementservice.activity.CreatePrescriptionActivity;
 import prescriptionmanagementservice.activity.ViewPrescriptionActivity;
 
 import javax.inject.Singleton;
@@ -14,4 +15,5 @@ public interface ServiceComponent {
 
     ViewPrescriptionActivity provideViewPrescriptionActivity();
 
+    CreatePrescriptionActivity provideCreatePrescriptionActivity();
 }
