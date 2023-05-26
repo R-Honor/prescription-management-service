@@ -1,10 +1,10 @@
 {
-  "email": "aoeuaoeu2@aoeu.aoeu",
-  "drug": "Advil",
-  "dose": "500mg",
+  "prescriptionId": "301547b8-f513-4988-8ca5-a3f6c690bc6e",
+  "dose": "10mL",
   "sigCode": "BID",
-  "notes": "cats are amazing!",
-  "lastFillDate": "2023-01-18T12:56:09.000Z",
-  "expirationDate": "2023-04-18T12:56:09.000Z",
-  "refills": 2
+  "notes": "do you dare to find out",
+  "lastFillDate": "1991-06-23T04:00:00.000Z",
+  "expirationDate": "2069-01-01T00:00:00.000Z",
+  "refills": 15,
+  "status": "READY"
 }

@@ -29,4 +29,9 @@ public class PrescriptionDao {
         this.mapper.save(prescription);
         return prescription;
     }
+
+    public Prescription savePrescription(Prescription prescription) {
+        this.mapper.save(prescription);
+        return prescription;
+    }
 }
