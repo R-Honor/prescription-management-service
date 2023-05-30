@@ -1,0 +1,12 @@
+
+GET test:
+curl -X GET http://127.0.0.1:3000/prescription/123
+
+POST test:
+curl -X POST -d @data/curltest.json http://127.0.0.1:3000/prescription
+
+PUT test:
+curl -X PUT -d @data/curltestcopy.json http://127.0.0.1:3000/prescription/301547b8-f513-4988-8ca5-a3f6c690bc6e
+
+GET query test:curl -X GET http://127.0.0.1:3000/prescription/\?q\=coolcats@cool.cats+none
+curl -X GET http://127.0.0.1:3000/prescription/\?q\=coolcats@cool.cats+none

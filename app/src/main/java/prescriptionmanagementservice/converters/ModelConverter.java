@@ -3,6 +3,9 @@ package prescriptionmanagementservice.converters;
 import prescriptionmanagementservice.dynamodb.models.Prescription;
 import prescriptionmanagementservice.models.PrescriptionModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ModelConverter {
 
     public PrescriptionModel toPrescriptionModel(Prescription prescription) {
@@ -19,4 +22,15 @@ public class ModelConverter {
                 .withNotes(prescription.getNotes())
                 .build();
     }
+
+    public List<PrescriptionModel> toPrescriptionModelList(List<Prescription> prescriptions) {
+        List<PrescriptionModel> prescriptionModels = new ArrayList<>();
+
+        for (Prescription prescription : prescriptions) {
+            prescriptionModels.add(toPrescriptionModel(prescription));
+        }
+
+        return prescriptionModels;
+    }
+
 }
