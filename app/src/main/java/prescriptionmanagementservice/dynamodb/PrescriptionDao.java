@@ -39,12 +39,15 @@ public class PrescriptionDao {
         return prescription;
     }
 
+    public Prescription deletePrescription(Prescription prescription) {
+        this.mapper.save(prescription);
+        return prescription;
+    }
+
     public List<Prescription> searchPrescriptions(String[] criteria) {
         ArrayList<Prescription> prescriptionList = new ArrayList<>();
 
-        System.out.println("BEFORE");
         if (Objects.equals(criteria[1], "none")) {
-            System.out.println("AFTER");
             Map<String, AttributeValue> valueMap = new HashMap<>();
             valueMap.put(":email", new AttributeValue().withS(criteria[0]));
 
