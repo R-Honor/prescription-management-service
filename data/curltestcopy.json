@@ -1,10 +1,10 @@
 {
   "prescriptionId": "301547b8-f513-4988-8ca5-a3f6c690bc6e",
-  "dose": "10mL",
-  "sigCode": "BID",
-  "notes": "do you dare to find out",
+  "dose": "999mL",
+  "sigCode": "qH",
+  "notes": "cats are the best",
   "lastFillDate": "1991-06-23T04:00:00.000Z",
   "expirationDate": "2069-01-01T00:00:00.000Z",
-  "refills": 15,
-  "status": "READY"
+  "refills": 8,
+  "status": "FILLED"
 }

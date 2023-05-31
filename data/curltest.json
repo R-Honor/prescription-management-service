@@ -1,10 +1,10 @@
 {
   "email": "amazingcats@cool.cats",
-  "drug": "Mystery",
-  "dose": "10mL",
-  "sigCode": "qH",
-  "notes": "do you dare to find out",
-  "lastFillDate": "1991-06-23T04:00:00.000Z",
-  "expirationDate": "2069-01-01T00:00:00.000Z",
-  "refills": 10
+  "drug": "Hydrocortisone",
+  "dose": "500mg",
+  "sigCode": "BID",
+  "notes": "this will kill you",
+  "lastFillDate": "1922-12-30T12:00:00.000Z",
+  "expirationDate": "1991-12-26T12:00:00.000Z",
+  "refills": 15
 }

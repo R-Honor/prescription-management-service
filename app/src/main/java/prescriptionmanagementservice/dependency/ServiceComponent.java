@@ -2,6 +2,7 @@ package prescriptionmanagementservice.dependency;
 
 import dagger.Component;
 import prescriptionmanagementservice.activity.CreatePrescriptionActivity;
+import prescriptionmanagementservice.activity.SearchPrescriptionActivity;
 import prescriptionmanagementservice.activity.UpdatePrescriptionActivity;
 import prescriptionmanagementservice.activity.ViewPrescriptionActivity;
 
@@ -19,4 +20,7 @@ public interface ServiceComponent {
     CreatePrescriptionActivity provideCreatePrescriptionActivity();
 
     UpdatePrescriptionActivity provideUpdatePrescriptionActivity();
+
+    SearchPrescriptionActivity provideSearchPrescriptionActivity();
+
 }
