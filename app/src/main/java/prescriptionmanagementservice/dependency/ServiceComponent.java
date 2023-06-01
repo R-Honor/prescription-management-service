@@ -22,4 +22,5 @@ public interface ServiceComponent {
 
     DeletePrescriptionActivity provideDeletePrescriptionActivity();
 
+    ViewPatientActivity provideViewPatientActivity();
 }

@@ -1,6 +1,8 @@
 package prescriptionmanagementservice.converters;
 
+import prescriptionmanagementservice.dynamodb.models.Patient;
 import prescriptionmanagementservice.dynamodb.models.Prescription;
+import prescriptionmanagementservice.models.PatientModel;
 import prescriptionmanagementservice.models.PrescriptionModel;
 
 import java.util.ArrayList;
@@ -33,4 +35,14 @@ public class ModelConverter {
         return prescriptionModels;
     }
 
+    public PatientModel toPatientModel(Patient patient) {
+        return PatientModel.builder()
+                .withEmail(patient.getEmail())
+                .withFirstName(patient.getFirstName())
+                .withLastName(patient.getLastName())
+                .withInsurance(patient.getInsurance())
+                .withPhone(patient.getPhone())
+                .withAddress(patient.getAddress())
+                .build();
+    }
 }
