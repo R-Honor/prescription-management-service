@@ -359,6 +359,12 @@ Resources:
               KeyType: "RANGE"
           Projection:
             ProjectionType: "KEYS_ONLY"
+        - IndexName: "StatusIndex"
+          KeySchema:
+            - AttributeName: "status"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: "KEYS_ONLY"
 
   PatientsTable:
     Type: AWS::DynamoDB::Table

@@ -13,6 +13,7 @@ import java.util.*;
 public class PrescriptionDao {
 
     private static final String EMAIL_STATUS_INDEX = "EmailStatusIndex";
+    private static final String STATUS_INDEX = "StatusIndex";
     private final DynamoDBMapper mapper;
 
     @Inject
@@ -46,23 +47,31 @@ public class PrescriptionDao {
 
     public List<Prescription> searchPrescriptions(String[] criteria) {
         ArrayList<Prescription> prescriptionList = new ArrayList<>();
+        DynamoDBQueryExpression<Prescription> queryExpression;
 
-        if (Objects.equals(criteria[1], "none")) {
+        if (Objects.equals(criteria[0], "none")) {
+            Map<String, AttributeValue> valueMap = new HashMap<>();
+            valueMap.put(":prescriptionStatus", new AttributeValue().withS(criteria[1]));
+
+            Map<String, String> nameMap = new HashMap<>();
+            nameMap.put("#statusAttribute", "status");
+
+            queryExpression = new DynamoDBQueryExpression<Prescription>()
+                    .withIndexName(STATUS_INDEX)
+                    .withConsistentRead(false)
+                    .withKeyConditionExpression("#statusAttribute = :prescriptionStatus")
+                    .withExpressionAttributeValues(valueMap)
+                    .withExpressionAttributeNames(nameMap);
+        }
+        else if (Objects.equals(criteria[1], "none")) {
             Map<String, AttributeValue> valueMap = new HashMap<>();
             valueMap.put(":email", new AttributeValue().withS(criteria[0]));
 
-            DynamoDBQueryExpression<Prescription> queryExpression = new DynamoDBQueryExpression<Prescription>()
+            queryExpression = new DynamoDBQueryExpression<Prescription>()
                     .withIndexName(EMAIL_STATUS_INDEX)
                     .withConsistentRead(false)
                     .withKeyConditionExpression("email = :email")
                     .withExpressionAttributeValues(valueMap);
-
-            PaginatedQueryList<Prescription> prescriptionsFromGSI = mapper.query(Prescription.class, queryExpression);
-
-            for (Prescription prescription : prescriptionsFromGSI) {
-                Prescription actualPrescription = mapper.load(Prescription.class, prescription.getPrescriptionId());
-                prescriptionList.add(actualPrescription);
-            }
         }
         else {
             Map<String, AttributeValue> valueMap = new HashMap<>();
@@ -72,19 +81,18 @@ public class PrescriptionDao {
             Map<String, String> nameMap = new HashMap<>();
             nameMap.put("#statusAttribute", "status");
 
-            DynamoDBQueryExpression<Prescription> queryExpression = new DynamoDBQueryExpression<Prescription>()
+            queryExpression = new DynamoDBQueryExpression<Prescription>()
                     .withIndexName(EMAIL_STATUS_INDEX)
                     .withConsistentRead(false)
                     .withKeyConditionExpression("email = :email and #statusAttribute = :prescriptionStatus")
                     .withExpressionAttributeValues(valueMap)
                     .withExpressionAttributeNames(nameMap);
+        }
 
-            PaginatedQueryList<Prescription> prescriptionsFromGSI = mapper.query(Prescription.class, queryExpression);
-
-            for (Prescription prescription : prescriptionsFromGSI) {
-                Prescription actualPrescription = mapper.load(Prescription.class, prescription.getPrescriptionId());
-                prescriptionList.add(actualPrescription);
-            }
+        PaginatedQueryList<Prescription> prescriptionsFromGSI = mapper.query(Prescription.class, queryExpression);
+        for (Prescription prescription : prescriptionsFromGSI) {
+            Prescription actualPrescription = mapper.load(Prescription.class, prescription.getPrescriptionId());
+            prescriptionList.add(actualPrescription);
         }
         return prescriptionList;
     }
