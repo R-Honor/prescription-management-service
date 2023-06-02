@@ -6,7 +6,7 @@ import prescriptionmanagementservice.activity.*;
 import javax.inject.Singleton;
 
 /**
- * Dagger component for providing dependency injection in the Music Playlist Service.
+ * Dagger component for providing dependency injection in the Prescription Management Service.
  */
 @Singleton
 @Component(modules = {DaoModule.class, MetricsModule.class})
@@ -25,4 +25,6 @@ public interface ServiceComponent {
     ViewPatientActivity provideViewPatientActivity();
 
     CreatePatientActivity provideCreatePatientActivity();
+
+    UpdatePatientActivity provideUpdatePatientActivity();
 }
