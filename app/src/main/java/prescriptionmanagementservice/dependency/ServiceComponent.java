@@ -27,4 +27,6 @@ public interface ServiceComponent {
     CreatePatientActivity provideCreatePatientActivity();
 
     UpdatePatientActivity provideUpdatePatientActivity();
+
+    DeletePatientActivity provideDeletePatientActivity();
 }

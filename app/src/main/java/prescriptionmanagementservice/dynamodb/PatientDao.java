@@ -2,8 +2,6 @@ package prescriptionmanagementservice.dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import prescriptionmanagementservice.dynamodb.models.Patient;
-import prescriptionmanagementservice.dynamodb.models.Patient;
-import prescriptionmanagementservice.dynamodb.models.Patient;
 import prescriptionmanagementservice.exceptions.PatientNotFoundException;
 
 import javax.inject.Inject;
@@ -35,5 +33,19 @@ public class PatientDao {
     public Patient savePatient(Patient patient) {
         this.mapper.save(patient);
         return patient;
+    }
+
+    public Patient deletePatient(String email) {
+        Patient patientToRemove;
+
+        try {
+            patientToRemove = viewPatient(email);
+        }
+        catch (PatientNotFoundException e) {
+            throw new PatientNotFoundException(String.format("A patient with the email %s was not found to delete", email));
+        }
+        this.mapper.delete(patientToRemove);
+
+        return patientToRemove;
     }
 }

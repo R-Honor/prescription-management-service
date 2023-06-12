@@ -397,6 +397,28 @@ Resources:
             Auth:
               Authorizer: 'NONE'
 
+  DeletePatientLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: app
+      Handler: prescriptionmanagementservice.lambda.DeletePatientLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        PrescriptionManagementService:
+          Type: Api
+          Properties:
+            Path: /patient/{email}
+            Method: delete
+            Auth:
+              Authorizer: 'NONE'
+
   #-----------------------------------------------------
   # DynamoDB Configuration
   #-----------------------------------------------------
