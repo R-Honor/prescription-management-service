@@ -5,6 +5,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import prescriptionmanagementservice.activity.requests.UpdatePrescriptionRequest;
+import prescriptionmanagementservice.activity.requests.ViewPrescriptionRequest;
 import prescriptionmanagementservice.activity.results.UpdatePrescriptionResult;
 
 public class UpdatePrescriptionLambda extends LambdaActivityRunner<UpdatePrescriptionRequest, UpdatePrescriptionResult>
@@ -17,11 +18,12 @@ public class UpdatePrescriptionLambda extends LambdaActivityRunner<UpdatePrescri
         log.info("Input to the UpdatePrescriptionLambda: '{}'", input.toString());
 
         return super.runActivity(
-                () -> {
+                () -> input.fromPath(path -> {
+                    String prescriptionId = path.get("prescriptionId");
                     UpdatePrescriptionRequest authenticatedRequest = input.fromBody(UpdatePrescriptionRequest.class);
 
                     return UpdatePrescriptionRequest.builder()
-                            .withPrescriptionId(authenticatedRequest.getPrescriptionId())
+                            .withPrescriptionId(prescriptionId)
                             .withDose(authenticatedRequest.getDose())
                             .withSigCode(authenticatedRequest.getSigCode())
                             .withNotes(authenticatedRequest.getNotes())
@@ -30,9 +32,10 @@ public class UpdatePrescriptionLambda extends LambdaActivityRunner<UpdatePrescri
                             .withRefills(authenticatedRequest.getRefills())
                             .withStatus(authenticatedRequest.getStatus())
                             .build();
-                },
+                }),
                 (request, serviceComponent) ->
                         serviceComponent.provideUpdatePrescriptionActivity().handleRequest(request)
         );
+
     }
 }

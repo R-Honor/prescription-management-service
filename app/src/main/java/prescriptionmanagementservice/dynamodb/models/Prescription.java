@@ -10,6 +10,7 @@ import java.util.Objects;
 @DynamoDBTable(tableName = "prescriptions")
 public class Prescription {
     private static final String EMAIL_STATUS_INDEX = "EmailStatusIndex";
+    private static final String STATUS_INDEX = "StatusIndex";
 
     private String prescriptionId;
     private String email;
@@ -34,7 +35,7 @@ public class Prescription {
         this.prescriptionId = prescriptionId;
     }
 
-    @DynamoDBIndexHashKey(globalSecondaryIndexName = EMAIL_STATUS_INDEX, attributeName = "email")
+    @DynamoDBIndexHashKey(globalSecondaryIndexNames = {EMAIL_STATUS_INDEX, STATUS_INDEX}, attributeName = "email")
     public String getEmail() {
         return email;
     }
@@ -100,7 +101,7 @@ public class Prescription {
     }
 
     @DynamoDBTypeConvertedEnum
-    @DynamoDBIndexRangeKey(globalSecondaryIndexName = EMAIL_STATUS_INDEX, attributeName = "status")
+    @DynamoDBIndexRangeKey(globalSecondaryIndexNames = {EMAIL_STATUS_INDEX, STATUS_INDEX}, attributeName = "status")
     public PrescriptionStatusEnum getStatus() {
         return status;
     }
