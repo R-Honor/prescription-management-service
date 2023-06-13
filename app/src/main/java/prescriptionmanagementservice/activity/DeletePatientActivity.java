@@ -29,6 +29,7 @@ public class DeletePatientActivity {
         Patient patient = patientDao.deletePatient(requestedEmail);
 
         PatientModel patientModel = new ModelConverter().toPatientModel(patient);
+        log.info("PatientModel = {}", patientModel.toString());
         return DeletePatientResult.builder()
                 .withPatient(patientModel)
                 .build();

@@ -10,6 +10,10 @@ public class DeletePatientResult {
         this.patientModel = patientModel;
     }
 
+    public PatientModel getPatient() {
+        return patientModel;
+    }
+
     @Override
     public String toString() {
         return "DeletePatientResult{" +
