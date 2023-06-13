@@ -45,4 +45,14 @@ public class ModelConverter {
                 .withAddress(patient.getAddress())
                 .build();
     }
+
+    public List<PatientModel> toPatientModelList(List<Patient> patients) {
+        List<PatientModel> patientModels = new ArrayList<>();
+
+        for (Patient patient : patients) {
+            patientModels.add(toPatientModel(patient));
+        }
+
+        return patientModels;
+    }
 }
