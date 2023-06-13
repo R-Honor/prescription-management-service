@@ -45,6 +45,18 @@ public class PatientModel {
     }
 
     @Override
+    public String toString() {
+        return "PatientModel{" +
+                "email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", insurance='" + insurance + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof PatientModel)) return false;
