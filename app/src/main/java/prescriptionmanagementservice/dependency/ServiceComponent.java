@@ -2,6 +2,7 @@ package prescriptionmanagementservice.dependency;
 
 import dagger.Component;
 import prescriptionmanagementservice.activity.*;
+import prescriptionmanagementservice.activity.requests.SearchPatientRequest;
 
 import javax.inject.Singleton;
 
@@ -22,6 +23,8 @@ public interface ServiceComponent {
 
     DeletePrescriptionActivity provideDeletePrescriptionActivity();
 
+
+
     ViewPatientActivity provideViewPatientActivity();
 
     CreatePatientActivity provideCreatePatientActivity();
@@ -29,4 +32,6 @@ public interface ServiceComponent {
     UpdatePatientActivity provideUpdatePatientActivity();
 
     DeletePatientActivity provideDeletePatientActivity();
+
+    SearchPatientActivity provideSearchPatientActivity();
 }

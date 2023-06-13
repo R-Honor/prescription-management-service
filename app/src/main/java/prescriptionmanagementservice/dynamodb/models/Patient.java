@@ -7,7 +7,7 @@ import java.util.Objects;
 @DynamoDBTable(tableName = "patients")
 public class Patient {
 
-    private static final String FIRST_LAST_INDEX = "FirstLastIndex";
+    private static final String LAST_FIRST_INDEX = "LastFirstIndex";
 
     private String email;
     private String firstName;
@@ -25,7 +25,7 @@ public class Patient {
         this.email = email;
     }
 
-    @DynamoDBIndexRangeKey(globalSecondaryIndexName = FIRST_LAST_INDEX, attributeName = "firstName")
+    @DynamoDBIndexRangeKey(globalSecondaryIndexName = LAST_FIRST_INDEX, attributeName = "firstName")
     public String getFirstName() {
         return firstName;
     }
@@ -34,7 +34,7 @@ public class Patient {
         this.firstName = firstName;
     }
 
-    @DynamoDBIndexHashKey(globalSecondaryIndexName = FIRST_LAST_INDEX, attributeName = "lastName")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = LAST_FIRST_INDEX, attributeName = "lastName")
     public String getLastName() {
         return lastName;
     }
