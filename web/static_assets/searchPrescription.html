@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="assets/searchPlaylists.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body class="background">
+
+<header class="header" id="header"></header>
+
+<div class="card">
+
+    <h2 class="heading">Search Prescriptions</h2>
+
+    <form class="card-content" id="search-prescription-form">
+
+        <p class="form-field">
+
+            <label>Search by Prescription ID</label>
+            <input type="text" class="validated-field" id="prescription-id" placeholder="..." autofocus>
+
+            <br>
+
+            <label>or</label>
+
+            <br>
+
+            <label>Search by patient's email, status, or both</label>
+            <input type="email" class="validated-field" id="email" placeholder="aoeuaoeu@aoeu.aoeu" autofocus>
+
+            <br>
+
+            <select name="status" class="validated-field" id="status">
+                <option value="none">-None-</option>
+                <option value="PENDING">Pending</option>
+                <option value="READY">Ready</option>
+                <option value="FILLED">Filled</option>
+                <option value="EXPIRED">Expired</option>
+                <option value="DELETED">Deleted</option>
+            </select>
+
+            <sub>Search is case-sensitive and must match exactly.</sub>
+
+        </p>
+
+    </form>
+
+    <a href="#" class="button" id="create">Submit</a>
+
+</div>
+
+<div class="card hidden" id='search-results-container'>
+    <h3>Results for <span id="search-criteria-display"></span></h3>
+    <div id="search-results-display"></div>
+</div>
+
+</body>
+
+</html>

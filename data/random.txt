@@ -10,3 +10,6 @@ curl -X PUT -d @data/curltestcopy.json http://127.0.0.1:3000/prescription/301547
 
 GET query test:curl -X GET http://127.0.0.1:3000/prescription/\?q\=coolcats@cool.cats+none
 curl -X GET http://127.0.0.1:3000/prescription/\?q\=coolcats@cool.cats+none
+
+
+pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:00.000Z"

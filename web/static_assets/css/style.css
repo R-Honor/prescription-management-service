@@ -2,7 +2,7 @@
     /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
     --primary-color: #5D5E5E;
     --secondary-color: #ffffff;
-    --tertiary-color: #F5881F;
+    --tertiary-color: #66ccff;
     --error-color: #EE3A23;
 }
 
@@ -34,6 +34,30 @@
   cursor: pointer;
 }
 
+.container{
+  margin: 20px auto;
+  width:400px;
+  height:400px;
+  display:grid;
+  grid-template-columns: 200px 200px;
+  grid-row: auto auto;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+  .w50{
+
+    padding:20px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+  }
+
+.heading {
+    text-align: center;
+}
+
 .button-group {
     display: flex;
     justify-content: space-between;
@@ -50,8 +74,9 @@
 .card {
     color: var(--primary-color);
     background-color: var(--secondary-color);
-    margin: 20px;
+    margin: auto;
     padding: 10px 20px;
+    max-width: 500px;
 }
 
 .error {

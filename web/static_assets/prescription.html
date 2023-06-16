@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="assets/viewPrescription.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body class="background">
+
+<header class="header" id="header"></header>
+
+<div class="card">
+    <h2 class="heading">Prescription Information</h2>
+    <br>
+    <h3 class="heading">Prescription ID</h3>
+    <h3 class="heading" id="prescriptionId"></h3>
+</div>
+
+<div class="card">
+
+    <form class="card-content" id="update-prescription-form">
+
+        <p class="hidden error" id="error-message"> </p>
+
+        <p class="form-field">
+            <label>Email</label>
+            <input type="text" class="validated-field" id="email" placeholder="" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Drug</label>
+            <input type="text" class="validated-field" id="drug" placeholder="" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Dose</label>
+            <input type="text" class="validated-field" id="dose" placeholder="" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Sig Code</label>
+            <input type="text" class="validated-field" id="sigCode" placeholder="" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Notes</label>
+            <input type="text" class="validated-field" id="notes" placeholder="" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Last Fill Date</label>
+            <input type="text" class="validated-field" id="lastFillDate" placeholder="" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Expiration Date</label>
+            <input type="text" class="validated-field" id="expirationDate" placeholder="" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Refills</label>
+            <input type="number" class="validated-field" id="refills" placeholder="" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Status</label>
+            <input type="text" class="validated-field" id="status" placeholder="" autofocus>
+        </p>
+
+    </form>
+
+    <a href="#" class="button" id="update">Update</a>
+    <!--    <a href="#" class="button" id="delete">Delete Patient</a>-->
+
+
+</div>
+
+</body>
