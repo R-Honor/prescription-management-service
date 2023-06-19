@@ -15,7 +15,7 @@ export default class PharmacyClient extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'newPatient', 'newPrescription', 'viewPatient', 'viewPrescription'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'newPatient', 'newPrescription', 'viewPatient', 'viewPrescription', 'searchPatients', 'searchPrescriptions'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -195,19 +195,37 @@ export default class PharmacyClient extends BindingClass {
      * @param criteria A string containing search criteria to pass to the API.
      * @returns The playlists that match the search criteria.
      */
-//    async search(criteria, errorCallback) {
-//        try {
-//            const queryParams = new URLSearchParams({ q: criteria })
-//            const queryString = queryParams.toString();
-//
-//            const response = await this.axiosClient.get(`playlists/search?${queryString}`);
-//
-//            return response.data.playlists;
-//        } catch (error) {
-//            this.handleError(error, errorCallback)
-//        }
-//
-//    }
+    async searchPatients(criteria, errorCallback) {
+        try {
+            const queryParams = new URLSearchParams({ q: criteria })
+            const queryString = queryParams.toString();
+
+            console.log(queryString);
+            const response = await this.axiosClient.get(`patient/?${queryString}`);
+            console.log('out of response');
+
+            return response.data.patients;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+
+    }
+
+    async searchPrescriptions(criteria, errorCallback) {
+        try {
+            const queryParams = new URLSearchParams({ q: criteria })
+            const queryString = queryParams.toString();
+
+            console.log(queryString);
+            const response = await this.axiosClient.get(`prescription/?${queryString}`);
+            console.log('out of response');
+
+            return response.data.prescriptions;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+
+    }
 
     /**
      * Helper method to log the error and run any error functions.

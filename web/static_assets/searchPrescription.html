@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <script type="text/javascript" src="assets/searchPlaylists.js"></script>
+    <script type="text/javascript" src="assets/searchPrescriptions.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
@@ -14,23 +14,27 @@
 
     <h2 class="heading">Search Prescriptions</h2>
 
-    <form class="card-content" id="search-prescription-form">
+    <form class="card-content" id="search-prescriptions-form">
 
         <p class="form-field">
 
             <label>Search by Prescription ID</label>
-            <input type="text" class="validated-field" id="prescription-id" placeholder="..." autofocus>
+            <input type="text" class="validated-field" id="prescriptionId" placeholder="..." autofocus>
+            <sub>Search is case-sensitive and must match exactly.</sub>
 
-            <br>
+        </p>
 
-            <label>or</label>
+        <a href="#" class="button" id="search-single-btn">Go</a>
+
+        <br>
+        <br>
+
+        <p class="form-field">
 
             <br>
 
             <label>Search by patient's email, status, or both</label>
             <input type="email" class="validated-field" id="email" placeholder="aoeuaoeu@aoeu.aoeu" autofocus>
-
-            <br>
 
             <select name="status" class="validated-field" id="status">
                 <option value="none">-None-</option>
@@ -45,9 +49,11 @@
 
         </p>
 
+        <a href="#" class="button" id="search-btn">Search</a>
+
     </form>
 
-    <a href="#" class="button" id="create">Submit</a>
+<!--    <a href="#" class="button" id="create">Submit</a>-->
 
 </div>
 

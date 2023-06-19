@@ -65,7 +65,14 @@
 
         <p class="form-field">
             <label>Status</label>
-            <input type="text" class="validated-field" id="status" placeholder="" autofocus>
+            <select name="status" class="validated-field" id="status">
+                <option value="none">-None-</option>
+                <option value="PENDING">Pending</option>
+                <option value="READY">Ready</option>
+                <option value="FILLED">Filled</option>
+                <option value="EXPIRED">Expired</option>
+                <option value="DELETED">Deleted</option>
+            </select>
         </p>
 
     </form>

@@ -28,8 +28,10 @@ module.exports = {
     searchPlaylists: path.resolve(__dirname, 'src', 'pages', 'searchPlaylists.js'),
     newPatient: path.resolve(__dirname, 'src', 'pages', 'newPatient.js'),
     viewPatient: path.resolve(__dirname, 'src', 'pages', 'viewPatient.js'),
+    searchPatients: path.resolve(__dirname, 'src', 'pages', 'searchPatients.js'),
     newPrescription: path.resolve(__dirname, 'src', 'pages', 'newPrescription.js'),
-    viewPrescription: path.resolve(__dirname, 'src', 'pages', 'viewPrescription.js')
+    viewPrescription: path.resolve(__dirname, 'src', 'pages', 'viewPrescription.js'),
+    searchPrescriptions: path.resolve(__dirname, 'src', 'pages', 'searchPrescriptions.js')
   },
   output: {
     path: path.resolve(__dirname, 'build', 'assets'),

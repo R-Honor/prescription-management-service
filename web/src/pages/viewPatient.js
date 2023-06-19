@@ -31,7 +31,7 @@ class ViewPatient extends BindingClass {
      * Add the header to the page and load the PharmacyClient.
      */
     mount() {
-//        document.getElementById('add-song').addEventListener('click', this.addSong);
+//        document.getElementById('search-single-btn').addEventListener('click', this.addPatientToPage);
 
         this.header.addHeaderToPage();
 
