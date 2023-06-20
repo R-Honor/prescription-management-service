@@ -46,13 +46,15 @@ class ViewPrescription extends BindingClass {
         }
 
         document.getElementById('prescriptionId').innerText = prescription.prescriptionId;
-        document.getElementById('email').value = prescription.email;
-        document.getElementById('drug').value = prescription.drug;
+//        document.getElementById('email').value = prescription.email;
+//        document.getElementById('drug').value = prescription.drug;
+//        const lastFillDate = prescription.lastFillDate;
+//        console.log(typeof lastFillDate);
         document.getElementById('dose').value = prescription.dose;
         document.getElementById('sigCode').value = prescription.sigCode;
         document.getElementById('notes').value = prescription.notes;
-        document.getElementById('lastFillDate').value = prescription.lastFillDate;
-        document.getElementById('expirationDate').value = prescription.expirationDate;
+        document.getElementById('lastFillDate').value = prescription.lastFillDate.slice(0, -6);
+        document.getElementById('expirationDate').value = prescription.expirationDate.slice(0, -6);
         document.getElementById('refills').value = prescription.refills;
         document.getElementById('status').value = prescription.status;
     }

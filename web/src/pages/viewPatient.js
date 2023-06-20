@@ -49,8 +49,8 @@ class ViewPatient extends BindingClass {
         }
 
         document.getElementById('email').innerText = patient.email;
-        document.getElementById('first-name').value = patient.firstName;
-        document.getElementById('last-name').value = patient.lastName;
+        document.getElementById('firstName').value = patient.firstName;
+        document.getElementById('lastName').value = patient.lastName;
         document.getElementById('insurance').value = patient.insurance;
         document.getElementById('phone').value = patient.phone;
         document.getElementById('address').value = patient.address;

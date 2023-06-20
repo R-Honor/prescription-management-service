@@ -15,7 +15,7 @@ export default class PharmacyClient extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'newPatient', 'newPrescription', 'viewPatient', 'viewPrescription', 'searchPatients', 'searchPrescriptions'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'newPatient', 'newPrescription', 'viewPatient', 'viewPrescription', 'searchPatients', 'searchPrescriptions', 'updatePatient'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -172,23 +172,49 @@ export default class PharmacyClient extends BindingClass {
      * @param trackNumber The track number of the song on the album.
      * @returns The list of songs on a playlist.
      */
-//    async addSongToPlaylist(id, asin, trackNumber, errorCallback) {
-//        try {
-//            const token = await this.getTokenOrThrow("Only authenticated users can add a song to a playlist.");
-//            const response = await this.axiosClient.post(`playlists/${id}/songs`, {
-//                id: id,
-//                asin: asin,
-//                trackNumber: trackNumber
-//            }, {
-//                headers: {
-//                    Authorization: `Bearer ${token}`
-//                }
-//            });
-//            return response.data.songList;
-//        } catch (error) {
-//            this.handleError(error, errorCallback)
-//        }
-//    }
+    async updatePatient(email, firstName, lastName, insurance, phone, address, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can update patients.");
+            const response = await this.axiosClient.put(`patient/${email}`, {
+                email: email,
+                firstName: firstName,
+                lastName: lastName,
+                insurance: insurance,
+                phone: phone,
+                address: address
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.patient;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    async updatePrescription(prescriptionId, dose, sigCode, notes, lastFillDate, expirationDate, refills, status, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can update prescriptions.");
+            const response = await this.axiosClient.put(`prescription/${prescriptionId}`, {
+                prescriptionId: prescriptionId,
+                dose: dose,
+                sigCode: sigCode,
+                notes: notes,
+                lastFillDate: lastFillDate,
+                expirationDate: expirationDate,
+                refills: refills,
+                status: status
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.prescription;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
 
     /**
      * Search for a soong.
@@ -225,6 +251,40 @@ export default class PharmacyClient extends BindingClass {
             this.handleError(error, errorCallback)
         }
 
+    }
+
+    async deletePrescription(prescriptionId, errorCallback) {
+        try {
+
+            const token = await this.getTokenOrThrow("Only authenticated users can delete a prescription.");
+
+            const response = await this.axiosClient.delete(`prescription/${prescriptionId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.prescription;
+        }
+        catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    async deletePatient(email, errorCallback) {
+        try {
+
+            const token = await this.getTokenOrThrow("Only authenticated users can delete a patient.");
+
+            const response = await this.axiosClient.delete(`patient/${email}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.patient;
+        }
+        catch (error) {
+            this.handleError(error, errorCallback)
+        }
     }
 
     /**
