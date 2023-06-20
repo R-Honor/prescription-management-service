@@ -28,7 +28,7 @@ class UpdatePrescription extends BindingClass {
     mount() {
         document.getElementById('update-button').addEventListener('click', this.submit);
         document.getElementById('update-button').addEventListener('click', this.viewPrescriptionFirst);
-//        this.header.addHeaderToPage();
+
         this.client = new PharmacyClient();
         this.clientLoaded();
     }
@@ -36,51 +36,17 @@ class UpdatePrescription extends BindingClass {
     async clientLoaded() {
          const urlParams = new URLSearchParams(window.location.search);
          const prescriptionId = urlParams.get('prescriptionId');
-         if (prescriptionId) {
-//         document.getElementById('prescription').classList.add('hidden');
-//         const prescriptionIdDisplayBox = document.createElement("div");
-//         const prescriptionIdDisplay = document.createElement("p");
-//         document.getElementById('update-if-linked').innerText = "Update Prescription with Email " + prescriptionId;
-//         document.getElementById('prescription').appendChild(prescriptionIdDisplayBox);
-//         document.getElementById('prescription').appendChild(prescriptionIdDisplay);
 
+         if (prescriptionId) {
          const prescription = await this.client.viewPrescription(prescriptionId, (error) => {
          errorMessageDisplay.innerText = `Error: ${error.message}`;
          errorMessageDisplay.classList.remove('hidden');
-
-
-
          });
 
          this.dataStore.setState({
              [SEARCH_RESULTS_KEY]: prescription,
          });
-//         document.getElementById('prescription-display-header').innerHTML = "Current Prescription";
          }}
-
-    /**
-     * Display the prescription to update before user selects update information
-     */
-    async viewPrescriptionFirst() {
-
-//        const errorMessageDisplay = document.getElementById('error-message');
-//        errorMessageDisplay.innerText = ``;
-//        errorMessageDisplay.classList.add('hidden');
-//
-//        const prescriptionId = document.getElementById('prescriptionId').value;
-
-//        const prescription = await this.client.viewPrescription(prescriptionId, (error) => {
-//
-//        errorMessageDisplay.innerText = `Error: ${error.message}`;
-//        errorMessageDisplay.classList.remove('hidden');
-//        });
-//
-//        this.dataStore.setState({
-//            [SEARCH_RESULTS_KEY]: prescription,
-//        });
-//        document.getElementById('prescription-display-header').innerHTML = "Current Prescription";
-
-    }
 
     /**
      * Method to run when the create playlist submit button is pressed. Call the PharmacyClient to update the
@@ -95,9 +61,11 @@ class UpdatePrescription extends BindingClass {
 
         const urlParams = new URLSearchParams(window.location.search);
         let prescriptionId = urlParams.get('prescriptionId');
+
         if (!prescriptionId) {
             prescriptionId = document.getElementById('prescriptionId').value;
         }
+
         console.log(prescriptionId);
 
         const dose = document.getElementById('dose').value;
@@ -117,8 +85,6 @@ class UpdatePrescription extends BindingClass {
         this.dataStore.setState({
             [SEARCH_RESULTS_KEY]: prescription,
         });
-//        document.getElementById('prescription-display-header').innerHTML = "Updated Prescription";
-
     }
 
     /**
@@ -132,7 +98,6 @@ class UpdatePrescription extends BindingClass {
         const searchResultsContainer = document.getElementById('search-results-container');
         const searchResultsDisplay = document.getElementById('search-results-display');
 
-//        searchResultsContainer.classList.add('hidden');
         searchResultsContainer.classList.remove('hidden');
         searchResultsDisplay.innerHTML = this.getHTMLForSearchResults(searchResults);
     }
