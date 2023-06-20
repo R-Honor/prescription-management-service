@@ -208,6 +208,14 @@ Resources:
               - Effect: Allow
                 Action: dynamodb:*
                 Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/prescriptions"
+              - Effect: Allow
+                Action:
+                - dynamodb:Query
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/prescriptions/index/EmailStatusIndex"
+              - Effect: Allow
+                Action:
+                  - dynamodb:Query
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/prescriptions/index/StatusIndex"
 
         - PolicyName: 'AccessPatients'
           PolicyDocument:
@@ -216,6 +224,10 @@ Resources:
               - Effect: Allow
                 Action: dynamodb:*
                 Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/patients"
+              - Effect: Allow
+                Action:
+                  - dynamodb:Query
+                Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/patients/index/LastFirstIndex"
 
   #-----------------------------------------------------
   # Lambda Functions Configuration
@@ -262,8 +274,6 @@ Resources:
           Properties:
             Path: /prescription
             Method: post
-            Auth:
-              Authorizer: 'NONE'
 
   UpdatePrescriptionLambda:
     Type: AWS::Serverless::Function
@@ -284,8 +294,6 @@ Resources:
           Properties:
             Path: /prescription/{prescriptionId}
             Method: put
-            Auth:
-              Authorizer: 'NONE'
 
   SearchPrescriptionLambda:
     Type: AWS::Serverless::Function
@@ -328,8 +336,6 @@ Resources:
           Properties:
             Path: /prescription/{prescriptionId}
             Method: delete
-            Auth:
-              Authorizer: 'NONE'
 
   ViewPatientLambda:
     Type: AWS::Serverless::Function
@@ -372,8 +378,6 @@ Resources:
           Properties:
             Path: /patient
             Method: post
-            Auth:
-              Authorizer: 'NONE'
 
   UpdatePatientLambda:
     Type: AWS::Serverless::Function
@@ -394,8 +398,6 @@ Resources:
           Properties:
             Path: /patient/{email}
             Method: put
-            Auth:
-              Authorizer: 'NONE'
 
   SearchPatientLambda:
     Type: AWS::Serverless::Function
@@ -438,8 +440,6 @@ Resources:
           Properties:
             Path: /patient/{email}
             Method: delete
-            Auth:
-              Authorizer: 'NONE'
 
   #-----------------------------------------------------
   # DynamoDB Configuration
