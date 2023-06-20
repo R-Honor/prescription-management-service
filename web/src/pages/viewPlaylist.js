@@ -23,10 +23,10 @@ class ViewPlaylist extends BindingClass {
     async clientLoaded() {
         const urlParams = new URLSearchParams(window.location.search);
         const playlistId = urlParams.get('id');
-        document.getElementById('playlist-name').innerText = "Loading Playlist ...";
+//        document.getElementById('playlist-name').innerText = "Loading Playlist ...";
         const playlist = await this.client.getPlaylist(playlistId);
         this.dataStore.set('playlist', playlist);
-        document.getElementById('songs').innerText = "(loading songs...)";
+//        document.getElementById('songs').innerText = "(loading songs...)";
         const songs = await this.client.getPlaylistSongs(playlistId);
         this.dataStore.set('songs', songs);
     }
@@ -35,7 +35,7 @@ class ViewPlaylist extends BindingClass {
      * Add the header to the page and load the MusicPlaylistClient.
      */
     mount() {
-        document.getElementById('add-song').addEventListener('click', this.addSong);
+//        document.getElementById('add-song').addEventListener('click', this.addSong);
 
         this.header.addHeaderToPage();
 

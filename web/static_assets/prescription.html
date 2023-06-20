@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="assets/viewPrescription.js"></script>
+    <script type="text/javascript" src="assets/updatePrescription.js"></script>
+    <script type="text/javascript" src="assets/deletePrescription.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body class="background">
+
+<header class="header" id="header"></header>
+
+<div class="card">
+
+    <h2 class="heading">Prescription Information</h2>
+    <h3 class="heading">Prescription ID</h3>
+    <h3 class="heading" id="prescriptionId"></h3>
+
+    <div class="card hidden"  id='search-results-container'>
+        <div id="search-results-display"></div>
+    </div>
+
+</div>
+
+<br>
+<br>
+
+<div class="card">
+
+    <form class="card-content" id="update-prescription-form">
+
+        <p class="hidden error" id="error-message"> </p>
+
+<!--        <p class="form-field">-->
+<!--            <label>Email</label>-->
+<!--            <input type="text" class="validated-field" id="email" placeholder="" autofocus readonly>-->
+<!--        </p>-->
+
+<!--        <p class="form-field">-->
+<!--            <label>Drug</label>-->
+<!--            <input type="text" class="validated-field" id="drug" placeholder="" autofocus readonly>-->
+<!--        </p>-->
+
+        <p class="form-field">
+            <label>Dose</label>
+            <input type="text" class="validated-field" id="dose" placeholder="" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Sig Code</label>
+            <input type="text" class="validated-field" id="sigCode" placeholder="" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Notes</label>
+            <input type="text" class="validated-field" id="notes" placeholder="" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Last Fill Date</label>
+            <input type="datetime-local" class="validated-field" id="lastFillDate" placeholder="" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Expiration Date</label>
+            <input type="datetime-local" class="validated-field" id="expirationDate" placeholder="" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Refills</label>
+            <input type="number" class="validated-field" min="0" id="refills" placeholder="" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Status</label>
+            <select name="status" class="validated-field" id="status">
+                <option value="PENDING">Pending</option>
+                <option value="READY">Ready</option>
+                <option value="FILLED">Filled</option>
+                <option value="EXPIRED">Expired</option>
+<!--                <option value="DELETED">Deleted</option>-->
+            </select>
+        </p>
+
+    </form>
+
+    <a href="#" class="button" id="update-button">Update</a>
+    <a href="searchPrescription.html" class="button" id="back-to-search">Back To Search</a>
+    <a href="#" class="button" id="delete-button">Delete</a>
+
+</div>
+
+
+</body>

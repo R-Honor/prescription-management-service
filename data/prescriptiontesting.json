@@ -1,9 +1,10 @@
 {
+  "email": "aoeuaoeu@aoeu.aoeu",
+  "drug": "aoeu",
   "dose": "500mg",
   "sigCode": "qH",
   "notes": "this will kill you",
   "lastFillDate": "1922-12-30T12:00:00.000Z",
   "expirationDate": "1991-12-26T12:00:00.000Z",
-  "refills": 8,
-  "status": "PENDING"
+  "refills": 8
 }

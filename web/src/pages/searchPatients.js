@@ -1,4 +1,4 @@
-import MusicPlaylistClient from '../api/musicPlaylistClient';
+import PharmacyClient from '../api/pharmacyClient';
 import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
@@ -25,51 +25,70 @@ const EMPTY_DATASTORE_STATE = {
 /**
  * Logic needed for the view playlist page of the website.
  */
-class SearchPlaylists extends BindingClass {
+class SearchPatients extends BindingClass {
     constructor() {
         super();
 
-        this.bindClassMethods(['mount', 'search', 'displaySearchResults', 'getHTMLForSearchResults'], this);
+        this.bindClassMethods(['mount', 'search', 'displaySearchResults', 'getHTMLForSearchResults', 'redirectToViewPatient'], this);
 
         // Create a enw datastore with an initial "empty" state.
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
         this.header = new Header(this.dataStore);
         this.dataStore.addChangeListener(this.displaySearchResults);
-        console.log("searchPlaylists constructor");
+//        this.dataStore.addChangeListener(this.redirectToViewPatient);
+
+        console.log("searchPatients constructor");
     }
 
     /**
-     * Add the header to the page and load the MusicPlaylistClient.
+     * Add the header to the page and load the PharmacyClient.
      */
     mount() {
         // Wire up the form's 'submit' event and the button's 'click' event to the search method.
-//        document.getElementById('search-playlists-form').addEventListener('submit', this.search);
-//        document.getElementById('search-btn').addEventListener('click', this.search);
+        document.getElementById('search-patients-form').addEventListener('submit', this.search);
+        document.getElementById('search-btn').addEventListener('click', this.search);
+//        document.getElementById('search-patients-form').addEventListener('submit', this.search);
+        document.getElementById('search-single-btn').addEventListener('click', this.redirectToViewPatient);
+
+
 
         this.header.addHeaderToPage();
 
-        this.client = new MusicPlaylistClient();
+        this.client = new PharmacyClient();
     }
 
     /**
-     * Uses the client to perform the search, 
+     * Uses the client to perform the search,
      * then updates the datastore with the criteria and results.
      * @param evt The "event" object representing the user-initiated event that triggered this method.
      */
     async search(evt) {
         // Prevent submitting the from from reloading the page.
         evt.preventDefault();
+        console.log('in search');
+        let lastName = document.getElementById('lastName').value;
+        let firstName = document.getElementById('firstName').value;
+        console.log(lastName);
+        console.log(firstName);
 
-        const searchCriteria = document.getElementById('search-criteria').value;
+
+        if (lastName === '') {
+            lastName = 'none';
+        }
+        if (firstName === '') {
+            firstName = 'none';
+        }
+
+        const searchCriteria = lastName + " " + firstName
         const previousSearchCriteria = this.dataStore.get(SEARCH_CRITERIA_KEY);
 
-        // If the user didn't change the search criteria, do nothing
+//         If the user didn't change the search criteria, do nothing
         if (previousSearchCriteria === searchCriteria) {
             return;
         }
 
         if (searchCriteria) {
-            const results = await this.client.search(searchCriteria);
+            const results = await this.client.searchPatients(searchCriteria);
 
             this.dataStore.setState({
                 [SEARCH_CRITERIA_KEY]: searchCriteria,
@@ -104,7 +123,7 @@ class SearchPlaylists extends BindingClass {
 
     /**
      * Create appropriate HTML for displaying searchResults on the page.
-     * @param searchResults An array of playlists objects to be displayed on the page.
+     * @param searchResults An array of patients objects to be displayed on the page.
      * @returns A string of HTML suitable for being dropped on the page.
      */
     getHTMLForSearchResults(searchResults) {
@@ -112,20 +131,28 @@ class SearchPlaylists extends BindingClass {
             return '<h4>No results found</h4>';
         }
 
-        let html = '<table><tr><th>Name</th><th>Song Count</th><th>Tags</th></tr>';
+        let html = '<table><tr><th>Email</th><th>First</th><th>Last</th></tr>';
         for (const res of searchResults) {
             html += `
             <tr>
                 <td>
-                    <a href="playlist.html?id=${res.id}">${res.name}</a>
+                    <a href="patient.html?email=${res.email}">${res.email}</a>
                 </td>
-                <td>${res.songCount}</td>
-                <td>${res.tags?.join(', ')}</td>
+                <td>${res.firstName}</td>
+                <td>${res.lastName}</td>
             </tr>`;
         }
         html += '</table>';
 
         return html;
+    }
+
+    redirectToViewPatient() {
+        const email = document.getElementById('email').value;
+        console.log(email);
+        if (email != null) {
+            window.location.href = `/patient.html?email=${email}`;
+        }
     }
 
 }
@@ -134,8 +161,8 @@ class SearchPlaylists extends BindingClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const searchPlaylists = new SearchPlaylists();
-    searchPlaylists.mount();
+    const searchPatients = new SearchPatients();
+    searchPatients.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

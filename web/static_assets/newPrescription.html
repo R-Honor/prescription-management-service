@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="assets/newPrescription.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body class="background">
+
+<header class="header" id="header"></header>
+
+<div class="card">
+
+    <h2 class="heading">New Prescription</h2>
+
+    <form class="card-content" id="create-prescription-form">
+
+        <p class="hidden error" id="error-message"> </p>
+
+        <p class="form-field">
+            <label>Patient Email</label>
+            <input type="email" required class="validated-field" id="email" placeholder="aoeuaoeu@aoeu.aoeu" autofocus>
+        </p>
+
+        <p class="form-field">
+            <label>Drug</label>
+            <input type="text" id="drug" required class="tags" placeholder="Advil">
+        </p>
+
+        <p class="form-field">
+            <label>Dose</label>
+            <input type="text" id="dose" required class="tags" placeholder="20mg">
+        </p>
+
+        <p class="form-field">
+            <label>Sig Code</label>
+            <input type="text" id="sigCode" required class="tags" placeholder="qH">
+        </p>
+
+        <p class="form-field">
+            <label>Notes</label>
+            <input type="text" id="notes" required class="tags" placeholder="...">
+        </p>
+
+        <p class="form-field">
+            <label>Today's Date</label>
+            <input type="datetime-local" id="lastFillDate" required class="tags">
+        </p>
+
+        <p class="form-field">
+            <label>Expiration Date</label>
+            <input type="datetime-local" id="expirationDate" required class="tags">
+        </p>
+
+        <p class="form-field">
+            <label>Refills</label>
+            <input type="number" id="refills" min="0" required class="tags" placeholder="0">
+        </p>
+
+        <p>
+            <a href="#" class="button" id="create">Submit</a>
+        </p>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>
