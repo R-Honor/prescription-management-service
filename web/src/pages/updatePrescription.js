@@ -16,7 +16,7 @@ const EMPTY_DATASTORE_STATE = {
 class UpdatePrescription extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'viewPrescriptionFirst', 'submit', 'clientLoaded', 'displaySearchResults', 'getHTMLForSearchResults'], this);
+        this.bindClassMethods(['mount', 'submit', 'clientLoaded', 'displaySearchResults', 'getHTMLForSearchResults'], this);
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
         this.dataStore.addChangeListener(this.displaySearchResults);
         this.header = new Header(this.dataStore);
