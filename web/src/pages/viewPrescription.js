@@ -13,7 +13,7 @@ class ViewPrescription extends BindingClass {
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.addPrescriptionToPage);
         this.header = new Header(this.dataStore);
-        console.log("viewprescription constructor");
+        console.log("viewPrescription constructor");
     }
 
     /**
@@ -41,15 +41,12 @@ class ViewPrescription extends BindingClass {
      */
     addPrescriptionToPage() {
         const prescription = this.dataStore.get('prescription');
+
         if (prescription == null) {
             return;
         }
 
         document.getElementById('prescriptionId').innerText = prescription.prescriptionId;
-//        document.getElementById('email').value = prescription.email;
-//        document.getElementById('drug').value = prescription.drug;
-//        const lastFillDate = prescription.lastFillDate;
-//        console.log(typeof lastFillDate);
         document.getElementById('dose').value = prescription.dose;
         document.getElementById('sigCode').value = prescription.sigCode;
         document.getElementById('notes').value = prescription.notes;

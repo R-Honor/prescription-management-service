@@ -20,9 +20,7 @@ class NewPatient extends BindingClass {
      */
     mount() {
         document.getElementById('create').addEventListener('click', this.submit);
-
         this.header.addHeaderToPage();
-
         this.client = new PharmacyClient();
     }
 

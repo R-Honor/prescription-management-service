@@ -3,17 +3,6 @@ import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
 
-/*
-The code below this comment is equivalent to...
-const EMPTY_DATASTORE_STATE = {
-    'search-criteria': '',
-    'search-results': [],
-};
-
-...but uses the "KEY" constants instead of "magic strings".
-The "KEY" constants will be reused a few times below.
-*/
-
 const SEARCH_CRITERIA_KEY = 'search-criteria';
 const SEARCH_RESULTS_KEY = 'search-results';
 const EMPTY_DATASTORE_STATE = {
@@ -31,11 +20,9 @@ class SearchPatients extends BindingClass {
 
         this.bindClassMethods(['mount', 'search', 'displaySearchResults', 'getHTMLForSearchResults', 'redirectToViewPatient'], this);
 
-        // Create a enw datastore with an initial "empty" state.
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
         this.header = new Header(this.dataStore);
         this.dataStore.addChangeListener(this.displaySearchResults);
-//        this.dataStore.addChangeListener(this.redirectToViewPatient);
 
         console.log("searchPatients constructor");
     }
@@ -47,13 +34,9 @@ class SearchPatients extends BindingClass {
         // Wire up the form's 'submit' event and the button's 'click' event to the search method.
         document.getElementById('search-patients-form').addEventListener('submit', this.search);
         document.getElementById('search-btn').addEventListener('click', this.search);
-//        document.getElementById('search-patients-form').addEventListener('submit', this.search);
         document.getElementById('search-single-btn').addEventListener('click', this.redirectToViewPatient);
 
-
-
         this.header.addHeaderToPage();
-
         this.client = new PharmacyClient();
     }
 
@@ -70,7 +53,6 @@ class SearchPatients extends BindingClass {
         let firstName = document.getElementById('firstName').value;
         console.log(lastName);
         console.log(firstName);
-
 
         if (lastName === '') {
             lastName = 'none';
@@ -94,7 +76,8 @@ class SearchPatients extends BindingClass {
                 [SEARCH_CRITERIA_KEY]: searchCriteria,
                 [SEARCH_RESULTS_KEY]: results,
             });
-        } else {
+        }
+        else {
             this.dataStore.setState(EMPTY_DATASTORE_STATE);
         }
     }

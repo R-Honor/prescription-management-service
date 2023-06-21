@@ -26,9 +26,7 @@ class UpdatePatient extends BindingClass {
      * Add the header to the page and load the PharmacyClient
      */
     mount() {
-//        document.getElementById('view-button').addEventListener('click', this.viewPatientFirst);
         document.getElementById('update-button').addEventListener('click', this.submit);
-//        this.header.addHeaderToPage();
         this.client = new PharmacyClient();
         this.clientLoaded();
     }
@@ -36,26 +34,16 @@ class UpdatePatient extends BindingClass {
     async clientLoaded() {
          const urlParams = new URLSearchParams(window.location.search);
          const email = urlParams.get('email');
-         if (email) {
-//         document.getElementById('patient').classList.add('hidden');
-//         const emailDisplayBox = document.createElement("div");
-//         const emailDisplay = document.createElement("p");
-//         document.getElementById('update-if-linked').innerText = "Update Patient with Email " + email;
-//         document.getElementById('patient').appendChild(emailDisplayBox);
-//         document.getElementById('patient').appendChild(emailDisplay);
 
+         if (email) {
          const patient = await this.client.viewPatient(email, (error) => {
          errorMessageDisplay.innerText = `Error: ${error.message}`;
          errorMessageDisplay.classList.remove('hidden');
-
-
-
          });
 
          this.dataStore.setState({
              [SEARCH_RESULTS_KEY]: patient,
          });
-//         document.getElementById('patient-display-header').innerHTML = "Current Patient";
          }}
 
     /**
@@ -105,7 +93,6 @@ class UpdatePatient extends BindingClass {
         const phone = document.getElementById('phone').value;
         const address = document.getElementById('address').value;
 
-
         const patient = await this.client.updatePatient(email, firstName, lastName, insurance, phone, address, (error) => {
 
         errorMessageDisplay.innerText = `Error: ${error.message}`;
@@ -115,8 +102,6 @@ class UpdatePatient extends BindingClass {
         this.dataStore.setState({
             [SEARCH_RESULTS_KEY]: patient,
         });
-//        document.getElementById('patient-display-header').innerHTML = "Updated Patient";
-
     }
 
     /**
@@ -129,10 +114,6 @@ class UpdatePatient extends BindingClass {
 
         const searchResultsContainer = document.getElementById('search-results-container');
         const searchResultsDisplay = document.getElementById('search-results-display');
-
-//        searchResultsContainer.classList.add('hidden');
-//        searchResultsContainer.classList.remove('hidden');
-//        searchResultsDisplay.innerHTML = this.getHTMLForSearchResults(searchResults);
     }
 
     getHTMLForSearchResults(patient) {

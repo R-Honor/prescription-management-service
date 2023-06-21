@@ -20,9 +20,7 @@ class NewPrescription extends BindingClass {
      */
     mount() {
         document.getElementById('create').addEventListener('click', this.submit);
-
         this.header.addHeaderToPage();
-
         this.client = new PharmacyClient();
     }
 
@@ -41,7 +39,6 @@ class NewPrescription extends BindingClass {
         const origButtonText = createButton.innerText;
         createButton.innerText = 'Loading...';
 
-//        const prescriptionId = document.getElementById('prescriptionId').value;
         const email = document.getElementById('email').value;
         const drug = document.getElementById('drug').value;
         const dose = document.getElementById('dose').value;
@@ -50,8 +47,6 @@ class NewPrescription extends BindingClass {
         const lastFillDate = document.getElementById('lastFillDate').value + ':00.000Z';
         const expirationDate = document.getElementById('expirationDate').value + ':00.000Z';
         const refills = document.getElementById('refills').value;
-//        const status = document.getElementById('status').value;
-
 
         const prescription = await this.client.newPrescription(email, drug, dose, sigCode, notes, lastFillDate, expirationDate, refills, (error) => {
             createButton.innerText = origButtonText;
@@ -59,7 +54,6 @@ class NewPrescription extends BindingClass {
             errorMessageDisplay.classList.remove('hidden');
         });
         this.dataStore.set('prescription', prescription);
-        console.log('This is our prescription' + prescription);
     }
 
     /**

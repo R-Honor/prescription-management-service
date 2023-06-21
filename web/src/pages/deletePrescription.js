@@ -27,24 +27,14 @@ class DeletePrescription extends BindingClass {
         errorMessageDisplay.innerText = '';
         errorMessageDisplay.classList.add('hidden');
 
-//        const deleteResultsContainer = document.getElementById('remove-car-container');
-//        const deleteCriteriaDisplay = document.getElementById('delete-criteria');
-//        const deleteResultsDisplay = document.getElementById('remove-car-display');
-
         const prescriptionId = document.getElementById('prescriptionId').innerText;
 
         console.log(prescriptionId);
         const prescriptionResult = await this.client.deletePrescription(prescriptionId, (error) => {
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
-
-//            deleteResultsContainer.classList.add('hidden');
-//            deleteCriteriaDisplay.innerHTML = '';
-//            deleteResultsDisplay.innerHTML = '';
             });
             window.location.reload();
-//            let input = document.getElementById('update-prescription-form');
-//            input.reset();
       }
     }
 
