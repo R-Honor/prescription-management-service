@@ -10,9 +10,6 @@ const EMPTY_DATASTORE_STATE = {
     [SEARCH_RESULTS_KEY]: [],
 };
 
-/**
- * Logic needed for the view playlist page of the website.
- */
 class SearchPrescriptions extends BindingClass {
     constructor() {
         super();
@@ -25,11 +22,7 @@ class SearchPrescriptions extends BindingClass {
         console.log("searchPrescriptions constructor");
     }
 
-    /**
-     * Add the header to the page and load the PharmacyClient.
-     */
     mount() {
-        // Wire up the form's 'submit' event and the button's 'click' event to the search method.
         document.getElementById('search-prescriptions-form').addEventListener('submit', this.search);
         document.getElementById('search-btn').addEventListener('click', this.search);
         document.getElementById('search-single-btn').addEventListener('click', this.redirectToViewPrescription);
@@ -38,15 +31,11 @@ class SearchPrescriptions extends BindingClass {
         this.client = new PharmacyClient();
     }
 
-    /**
-     * Uses the client to perform the search,
-     * then updates the datastore with the criteria and results.
-     * @param evt The "event" object representing the user-initiated event that triggered this method.
-     */
     async search(evt) {
-        // Prevent submitting the from from reloading the page.
         evt.preventDefault();
+
         console.log('in search');
+
         let email = document.getElementById('email').value;
         let status = document.getElementById('status').value;
         console.log(email);
@@ -62,7 +51,6 @@ class SearchPrescriptions extends BindingClass {
         const searchCriteria = email + " " + status
         const previousSearchCriteria = this.dataStore.get(SEARCH_CRITERIA_KEY);
 
-//         If the user didn't change the search criteria, do nothing
         if (previousSearchCriteria === searchCriteria) {
             return;
         }
@@ -80,9 +68,6 @@ class SearchPrescriptions extends BindingClass {
         }
     }
 
-    /**
-     * Pulls search results from the datastore and displays them on the html page.
-     */
     displaySearchResults() {
         const searchCriteria = this.dataStore.get(SEARCH_CRITERIA_KEY);
         const searchResults = this.dataStore.get(SEARCH_RESULTS_KEY);
@@ -102,11 +87,6 @@ class SearchPrescriptions extends BindingClass {
         }
     }
 
-    /**
-     * Create appropriate HTML for displaying searchResults on the page.
-     * @param searchResults An array of prescriptions objects to be displayed on the page.
-     * @returns A string of HTML suitable for being dropped on the page.
-     */
     getHTMLForSearchResults(searchResults) {
         if (searchResults.length === 0) {
             return '<h4>No results found</h4>';
@@ -138,9 +118,6 @@ class SearchPrescriptions extends BindingClass {
 
 }
 
-/**
- * Main method to run when the page contents have loaded.
- */
 const main = async () => {
     const searchPrescriptions = new SearchPrescriptions();
     searchPrescriptions.mount();

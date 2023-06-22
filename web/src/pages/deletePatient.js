@@ -12,9 +12,6 @@ class DeletePatient extends BindingClass {
         console.log("DeletePatient constructor");
     }
 
-    /**
-     * Add the header to the page and load the PharmacyClient
-     */
     mount() {
         document.getElementById("delete-button").addEventListener('click',this.deletePatient);
         this.client = new PharmacyClient();
@@ -38,9 +35,6 @@ class DeletePatient extends BindingClass {
       }
     }
 
-/**
- * Main method to run when the page contents have loaded.
- */
 const main = async () => {
     const deletePatient = new DeletePatient();
     deletePatient.mount();

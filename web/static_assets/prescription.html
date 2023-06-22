@@ -16,25 +16,26 @@
 <header class="header" id="header"></header>
 
 <div class="card">
-
     <h2 class="heading">Prescription Information</h2>
     <h3 class="heading">Prescription ID</h3>
     <h3 class="heading" id="prescriptionId"></h3>
-
-    <div class="card hidden"  id='search-results-container'>
-        <div id="search-results-display"></div>
-    </div>
-
 </div>
-
-<!--<br>-->
-<!--<br>-->
 
 <div class="card">
 
     <form class="card-content" id="update-prescription-form">
 
         <p class="hidden error" id="error-message"> </p>
+
+        <p class="form-field">
+            <label>Email</label>
+            <input type="text" class="validated-field" id="email" placeholder="" autofocus readonly>
+        </p>
+
+        <p class="form-field">
+            <label>Drug</label>
+            <input type="text" class="validated-field" id="drug" placeholder="" autofocus readonly>
+        </p>
 
         <p class="form-field">
             <label>Dose</label>

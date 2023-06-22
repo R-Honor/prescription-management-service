@@ -10,21 +10,14 @@ const EMPTY_DATASTORE_STATE = {
     [SEARCH_RESULTS_KEY]: [],
 };
 
-/**
- * Logic needed for the create playlist page of the website.
- */
 class UpdatePatient extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'viewPatientFirst', 'submit', 'clientLoaded', 'displaySearchResults', 'getHTMLForSearchResults'], this);
+        this.bindClassMethods(['mount', 'viewPatientFirst', 'submit', 'clientLoaded'], this);
         this.dataStore = new DataStore(EMPTY_DATASTORE_STATE);
-        this.dataStore.addChangeListener(this.displaySearchResults);
         this.header = new Header(this.dataStore);
     }
 
-    /**
-     * Add the header to the page and load the PharmacyClient
-     */
     mount() {
         document.getElementById('update-button').addEventListener('click', this.submit);
         this.client = new PharmacyClient();
@@ -46,9 +39,6 @@ class UpdatePatient extends BindingClass {
          });
          }}
 
-    /**
-     * Display the patient to update before user selects update information
-     */
     async viewPatientFirst() {
 
         const errorMessageDisplay = document.getElementById('error-message');
@@ -70,10 +60,6 @@ class UpdatePatient extends BindingClass {
 
     }
 
-    /**
-     * Method to run when the create playlist submit button is pressed. Call the PharmacyClient to update the
-     * patient.
-     */
     async submit(evt) {
         evt.preventDefault();
 
@@ -99,45 +85,14 @@ class UpdatePatient extends BindingClass {
         errorMessageDisplay.classList.remove('hidden');
         });
 
+        alert("Patient Update Successful");
+
         this.dataStore.setState({
             [SEARCH_RESULTS_KEY]: patient,
         });
     }
-
-    /**
-     * When the playlist is updated in the datastore, redirect to the view playlist page.
-     */
-    displaySearchResults() {
-        const searchResults = this.dataStore.get(SEARCH_RESULTS_KEY);
-
-        console.log(searchResults);
-
-        const searchResultsContainer = document.getElementById('search-results-container');
-        const searchResultsDisplay = document.getElementById('search-results-display');
-    }
-
-    getHTMLForSearchResults(patient) {
-        if (patient.length === 0) {
-            return '<h4>No results found</h4>';
-        }
-
-        let html = '<table><tr><th>Make</th><th>Model</th><th>Year</th><th>Class</th><th>Capacity</th><th>Availability</th><th>CostPerDay</th></tr>' +
-            '<tr><td>'+ patient.make + '</td>' +
-            '<td>'+ patient.model + '</td>'  +
-            '<td>'+ patient.year + '</td>'  +
-            '<td>'+ patient.classOfVehicle + '</td>'  +
-            '<td>'+ patient.capacity + '</td>'  +
-            '<td>'+ patient.availability + '</td>' +
-            '<td>'+ patient.costPerDay + '</td></tr>'
-            '</table>';
-
-        return html;
-    }
 }
 
-/**
- * Main method to run when the page contents have loaded.
- */
 const main = async () => {
     const updatePatient = new UpdatePatient();
     updatePatient.mount();

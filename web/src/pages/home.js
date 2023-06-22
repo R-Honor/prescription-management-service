@@ -10,18 +10,12 @@ class Home extends BindingClass {
         this.header = new Header(this.dataStore);
     }
 
-    /**
-     * Add the header to the page and load the PharmacyClient.
-     */
     mount() {
         this.header.addHeaderToPage();
         this.client = new PharmacyClient();
     }
 }
 
-/**
- * Main method to run when the page contents have loaded.
- */
 const main = async () => {
     const home = new Home();
     home.mount();

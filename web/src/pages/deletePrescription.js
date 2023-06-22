@@ -13,9 +13,6 @@ class DeletePrescription extends BindingClass {
         console.log("DeletePrescription constructor");
     }
 
-    /**
-     * Add the header to the page and load the RentalCarServiceClient
-     */
     mount() {
         document.getElementById("delete-button").addEventListener('click',this.deletePrescription);
         this.client = new PharmacyClient();
@@ -34,6 +31,9 @@ class DeletePrescription extends BindingClass {
             errorMessageDisplay.innerText = `Error: ${error.message}`;
             errorMessageDisplay.classList.remove('hidden');
             });
+
+            alert("Prescription Delete Successful");
+
             window.location.reload();
       }
     }
