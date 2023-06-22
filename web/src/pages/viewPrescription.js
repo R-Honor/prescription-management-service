@@ -3,9 +3,6 @@ import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
 
-/**
- * Logic needed for the view prescription page of the website.
- */
 class ViewPrescription extends BindingClass {
     constructor() {
         super();
@@ -16,9 +13,6 @@ class ViewPrescription extends BindingClass {
         console.log("viewPrescription constructor");
     }
 
-    /**
-     * Once the client is loaded, get the prescription metadata.
-     */
     async clientLoaded() {
         const urlParams = new URLSearchParams(window.location.search);
         const prescriptionId = urlParams.get('prescriptionId');
@@ -26,9 +20,6 @@ class ViewPrescription extends BindingClass {
         this.dataStore.set('prescription', prescription);
     }
 
-    /**
-     * Add the header to the page and load the PharmacyClient.
-     */
     mount() {
         this.header.addHeaderToPage();
 
@@ -36,9 +27,6 @@ class ViewPrescription extends BindingClass {
         this.clientLoaded();
     }
 
-    /**
-     * When the prescription is updated in the datastore, update the prescription metadata on the page.
-     */
     addPrescriptionToPage() {
         const prescription = this.dataStore.get('prescription');
 
@@ -47,6 +35,8 @@ class ViewPrescription extends BindingClass {
         }
 
         document.getElementById('prescriptionId').innerText = prescription.prescriptionId;
+        document.getElementById('email').value = prescription.email;
+        document.getElementById('drug').value = prescription.drug;
         document.getElementById('dose').value = prescription.dose;
         document.getElementById('sigCode').value = prescription.sigCode;
         document.getElementById('notes').value = prescription.notes;
@@ -58,9 +48,6 @@ class ViewPrescription extends BindingClass {
 
 }
 
-/**
- * Main method to run when the page contents have loaded.
- */
 const main = async () => {
     const viewPrescription = new ViewPrescription();
     viewPrescription.mount();

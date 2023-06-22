@@ -3,9 +3,6 @@ import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
 
-/**
- * Logic needed for the view patient page of the website.
- */
 class ViewPatient extends BindingClass {
     constructor() {
         super();
@@ -16,9 +13,6 @@ class ViewPatient extends BindingClass {
         console.log("viewPatient constructor");
     }
 
-    /**
-     * Once the client is loaded, get the patient metadata.
-     */
     async clientLoaded() {
         const urlParams = new URLSearchParams(window.location.search);
         const email = urlParams.get('email');
@@ -27,9 +21,6 @@ class ViewPatient extends BindingClass {
         this.dataStore.set('patient', patient);
     }
 
-    /**
-     * Add the header to the page and load the PharmacyClient.
-     */
     mount() {
         this.header.addHeaderToPage();
 
@@ -37,9 +28,6 @@ class ViewPatient extends BindingClass {
         this.clientLoaded();
     }
 
-    /**
-     * When the patient is updated in the datastore, update the patient metadata on the page.
-     */
     addPatientToPage() {
         const patient = this.dataStore.get('patient');
 
@@ -56,9 +44,6 @@ class ViewPatient extends BindingClass {
     }
 }
 
-/**
- * Main method to run when the page contents have loaded.
- */
 const main = async () => {
     const viewPatient = new ViewPatient();
     viewPatient.mount();

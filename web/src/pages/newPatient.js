@@ -3,9 +3,6 @@ import Header from '../components/header';
 import BindingClass from '../util/bindingClass';
 import DataStore from '../util/DataStore';
 
-/**
- * Logic needed for the create patient page of the website.
- */
 class NewPatient extends BindingClass {
     constructor() {
         super();
@@ -15,19 +12,12 @@ class NewPatient extends BindingClass {
         this.header = new Header(this.dataStore);
     }
 
-    /**
-     * Add the header to the page and load the PharmacyClient.
-     */
     mount() {
         document.getElementById('create').addEventListener('click', this.submit);
         this.header.addHeaderToPage();
         this.client = new PharmacyClient();
     }
 
-    /**
-     * Method to run when the create patient submit button is pressed. Call the PharmacyClient to create the
-     * patient.
-     */
     async submit(evt) {
         evt.preventDefault();
 
@@ -54,9 +44,6 @@ class NewPatient extends BindingClass {
         this.dataStore.set('patient', patient);
     }
 
-    /**
-     * When the patient is updated in the datastore, redirect to the view patient page.
-     */
     redirectToViewPatient() {
         const patient = this.dataStore.get('patient');
         console.log(patient);
@@ -66,9 +53,6 @@ class NewPatient extends BindingClass {
     }
 }
 
-/**
- * Main method to run when the page contents have loaded.
- */
 const main = async () => {
     const newPatient = new NewPatient();
     newPatient.mount();

@@ -7,7 +7,7 @@
 }
 
 .background {
-    background-color: #8A8C8F;
+    background-color: #324252;
     margin: 0;
     counter-reset: section;
     font-family: "Helvetica Neue",Helvetica,sans-serif;
@@ -18,7 +18,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--primary-color);
+    background-color: #20252d;
     color: var(--secondary-color);
     padding: 4px 20px;
 }
@@ -35,7 +35,7 @@
   border-radius: 18px;
 }
 
-.container{
+.container {
   margin: 20px auto;
   width:400px;
   height:400px;
@@ -45,18 +45,19 @@
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 }
-  .w50{
 
-    padding:20px;
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:30px;
-  }
+.w50 {
+  padding:20px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+}
 
 .heading {
     text-align: center;
+    color: #262626;
 }
 
 .button-group {
@@ -74,12 +75,12 @@
 
 .card {
     color: var(--primary-color);
-    background-color: var(--secondary-color);
+    background-color: #e6e6e6;
     margin: auto;
+    margin-top: 25px;
     padding: 10px 20px;
     max-width: 500px;
     border-radius: 18px;
-
 }
 
 .error {
@@ -104,46 +105,6 @@
     flex-direction: column;
 }
 
-.tags {
-    display: flex;
-    flex-direction: row;
-}
-
-.tag {
-    font-size: 12px;
-    margin: 0 10px;
-    padding: 4px 8px;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    position: relative;
-    border-radius: 16px;
-}
-
-.song {
-    padding: 2px;
-    display: flex;
-}
-
-.song .title {
-    flex: 20%;
-}
-
-.song .album {
-    flex: 80%;
-}
-
-/*
-Flexbox on a lists removes the numbers. We use a counter here to add them back.
-https://stackoverflow.com/a/34316093
-https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters
-*/
-.song:before {
-    counter-increment: section;
-    content: counter(section) ".";
-    position: absolute;
-    margin-left: -40px;
-}
-
 .hidden {
     display: none;
 }
@@ -153,10 +114,11 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CS
 th, td {
     padding: 15px;
     text-align: left;
+    color: #262626;
 }
 
 th {
-    border-bottom: 1px solid var(--primary-color);
+    border-bottom: 2px solid #262626;
 }
 
 a {
