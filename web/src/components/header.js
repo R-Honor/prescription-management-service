@@ -29,7 +29,7 @@ export default class Header extends BindingClass {
         const homeButton = document.createElement('a');
         homeButton.classList.add('header_home');
         homeButton.href = 'index.html';
-        homeButton.innerText = 'Cool Cats Pharmacy';
+        homeButton.innerText = 'NSS Rx';
 
         const siteTitle = document.createElement('div');
         siteTitle.classList.add('site-title');
