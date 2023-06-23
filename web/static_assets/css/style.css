@@ -18,7 +18,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #20252d;
+    background-color: #324252;
     color: var(--secondary-color);
     padding: 4px 20px;
 }
@@ -57,7 +57,7 @@
 
 .heading {
     text-align: center;
-    color: #262626;
+    color: #FFFFFF;
 }
 
 .button-group {
@@ -75,7 +75,7 @@
 
 .card {
     color: var(--primary-color);
-    background-color: #e6e6e6;
+    background-color: #20252d;
     margin: auto;
     margin-top: 25px;
     padding: 10px 20px;
@@ -109,16 +109,32 @@
     display: none;
 }
 
+body {
+    background-image: url('PolandMountains2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+sub {
+    color: #FFFFFF;
+}
+
+label {
+    color: #FFFFFF;
+}
+
 /* table styles */ 
 
 th, td {
     padding: 15px;
     text-align: left;
-    color: #262626;
+    color: #FFFFFF;
 }
 
 th {
-    border-bottom: 2px solid #262626;
+    border-bottom: 2px solid #FFFFFF;
 }
 
 a {
